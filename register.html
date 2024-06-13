@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Records</title>
+    <link rel="stylesheet" href="register.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            background-image: url('walpaper.jpg');
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: blue;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #records {
+            margin-top: 30px;
+        }
+
+        .record {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        .record p {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Healthcare Records</h1>
+    
+    <form id="addRecordForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <label for="sex">Sex:</label>
+        <input type="text" id="sex" name="sex"><br><br>
+        <label for="diagnosis">Diagnosis:</label>
+        <input type="text" id="diagnosis" name="diagnosis"><br><br>
+        <button type="submit">Register</button>
+
+        <button onclick="goback">Back</button>
+    </form>
+    
+    <div id="records"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.0/dist/web3.min.js"></script>
+    <script>
+        // MetaMask Ethereum provider
+        const ethereumProvider = window.ethereum;
+
+        // Contract address and ABI
+        const contractAddress = '0xAcAcC93b9653b11c774E1b93B674790a646F1974';
+        const contractABI = 
+        
+        
+        [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_sex",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_diagnosis",
+				"type": "string"
+			}
+		],
+		"name": "addRecord",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getRecord",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getRecordsCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "records",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "sex",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "diagnosis",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+
+]
+;
+
+        // Initialize Web3
+        const web3 = new Web3(ethereumProvider);
+
+        // Initialize contract instance
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        // Get records count
+        async function getRecordsCount() {
+            const count = await contract.methods.getRecordsCount().call();
+            return count;
+        }
+
+        // Get record by index
+        async function getRecord(index) {
+    try {
+        const record = await contract.methods.getRecord(index).call();
+        return record;
+    } catch (error) {
+        console.error("Error fetching record:", error);
+        // Handle the error appropriately, e.g., throw it, return a default value, etc.
+        throw error;
+    }
+}
+
+
+        // Add record form submit event
+        document.getElementById('addRecordForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = parseInt(document.getElementById('age').value);
+            const sex = document.getElementById('sex').value;
+            const diagnosis = document.getElementById('diagnosis').value;
+
+            // Invoke contract method to add record
+            await contract.methods.addRecord(name, age, sex, diagnosis).send({ from: ethereumProvider.selectedAddress });
+            displayRecords();
+            alert('Details registered successfully!');
+        });
+
+        // Display records
+        async function displayRecords() {
+            const recordsCount = await getRecordsCount();
+            const recordsDiv = document.getElementById('records');
+            recordsDiv.innerHTML = '';
+            for (let i = 0; i < recordsCount; i++) {
+                const record = await getRecord(i);
+                const recordDiv = document.createElement('div');
+                recordDiv.className = 'record';
+                recordDiv.textContent = `Name: ${record[0]}, Age: ${record[1]}, Sex: ${record[2]}, Diagnosis: ${record[3]}`;
+                recordsDiv.appendChild(recordDiv);
+            }
+        }
+
+        // Connect to MetaMask
+        ethereumProvider.request({ method: 'eth_requestAccounts' })
+        .then(() => {
+            console.log('MetaMask connected');
+            displayRecords();
+        })
+        .catch(error => {
+            console.error('Error connecting to MetaMask:', error);
+        });
+
+        function goback() {
+            window.location.href="intro.html";
+        }
+    </script>
+</body>
+</html>

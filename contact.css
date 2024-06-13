@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    animation: gradientBackground 15s ease infinite;
+    background-size: 400% 400%;
+  }
+  
+  @keyframes gradientBackground {
+    0% {
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    }
+    25% {
+      background: linear-gradient(45deg, #fad0c4, #ffdde1);
+    }
+    50% {
+      background: linear-gradient(45deg, #ffdde1, #ffecd2);
+    }
+    75% {
+      background: linear-gradient(45deg, #ffecd2, #fcb69f);
+    }
+    100% {
+      background: linear-gradient(45deg, #fcb69f, #ff9a9e);
+    }
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  
+  h1 {
+    color: #007bff;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  a {
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }

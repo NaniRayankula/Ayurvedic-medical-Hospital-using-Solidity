@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to AYUSHNIDHI AYURVEDIC HOSPITAL</title>
+    <link rel="stylesheet" href="intro.css">
+    <style>
+        body {
+            background-image: url('bg2.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .hospital-img {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+            <h1>Welcome to AYUSHNIDHI AYURVEDIC HOSPITAL</h1>
+        
+        <div class="button-container">
+            <button onclick="goToRegisterPage()">Add new record</button>
+            <button onclick="onlineTreatment()">Online Treatment</button>
+            <button onclick="goToNextPage()">Patient Details</button><br>
+            <button onclick="goToDoctorPage()">Doctor details</button>
+            <button onclick="goToContactPage()">Contact details</button>
+        </div>
+        <img src="1.jpg" alt="Hospital Logo" height="300" width="300" class="hospital-img"><br><br>
+        
+    </div>
+
+    <script>
+         function goToRegisterPage() {
+            window.location.href = "Register.html"; 
+        }
+        function onlineTreatment() {
+            window.location.href="frames.html";
+        }
+        function goToNextPage() {
+            window.location.href = "patient.html"; 
+        }
+
+        function goToDoctorPage() {
+            window.location.href = "doctor.html"; 
+        }
+
+        function goToContactPage() {
+            window.location.href = "contact.html"; 
+        }
+        
+       
+    </script>
+</body>
+</html>

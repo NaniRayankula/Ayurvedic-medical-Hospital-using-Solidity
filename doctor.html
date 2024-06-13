@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Records</title>
+    <style>
+        body {
+            background-image: url(k.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+   
+
+h1 {
+    text-align: center;
+}
+
+#records-container {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-style: italic;
+    color: #888;
+}
+
+    </style>
+</head>
+<body >
+    <h1>Doctor details</h1>
+    
+    <div id="records-container">
+        <!-- Records will be displayed here -->
+    </div>
+
+    <h2>Search Records</h2>
+    <input type="text" id="search-input" placeholder="Enter doctor name">
+    <button onclick="searchRecord()">Search</button>
+
+    <script>
+        function displayRecords() {
+            // Sample records
+            const records = [
+            { name: "Pramod", age: 35, sex: "Male", Specification: "Cardiologist" },
+                { name: "Surendra", age: 45, sex: "Male", Specification: "Dermotology" },
+                { name: "Virat", age: 28, sex: "Male", Specification: "Pediatrics" },
+                { name: "Pram", age: 35, sex: "Male", Specification: "Cardiol" },
+                { name: "Sure", age: 45, sex: "Male", Specification: "Dermoto" },
+                { name: "Viraj", age: 28, sex: "Male", Specification: "Pediat" },
+                { name: "anuskha", age: 29, sex: "Female", Specification: "brain" },
+                { name: "Paramesh", age: 38, sex: "Male", Specification: "legs" },
+                { name: "Surendra", age: 25, sex: "Male", Specification: "backbone" },
+                { name: "Nani", age: 34, sex: "Male", Specification: "lungs" }
+
+            ];
+
+            const recordsContainer = document.getElementById("records-container");
+            recordsContainer.innerHTML = "";
+
+            if (records.length === 0) {
+                recordsContainer.innerHTML = "<p>No records found.</p>";
+            } else {
+                const list = document.createElement("ul");
+                records.forEach((record, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <strong>Record ${index + 1}:</strong><br>
+                        Name: ${record.name}<br>
+                        Age: ${record.age}<br>
+                        Sex: ${record.sex}<br>
+                        Specification: ${record.Specification}<br><br>
+                    `;
+                    list.appendChild(listItem);
+                });
+                recordsContainer.appendChild(list);
+            }
+        }
+
+        function searchRecord() {
+            const searchInput = document.getElementById("search-input").value.toLowerCase();
+            const records = [
+                { name: "Pramod", age: 35, sex: "Male", Specification: "Cardiologist" },
+                { name: "Surendra", age: 45, sex: "Male", Specification: "Dermotology" },
+                { name: "Virat", age: 28, sex: "Male", Specification: "Pediatrics" },
+                { name: "Pram", age: 35, sex: "Male", Specification: "Cardiol" },
+                { name: "Sure", age: 45, sex: "Male", Specification: "Dermoto" },
+                { name: "Viraj", age: 28, sex: "Male", Specification: "Pediat" },
+                { name: "anuskha", age: 29, sex: "Female", Specification: "brain" },
+                { name: "Paramesh", age: 38, sex: "Male", Specification: "legs" },
+                { name: "Surendra", age: 25, sex: "Male", Specification: "backbone" },
+                { name: "Nani", age: 34, sex: "Male", Specification: "lungs" }
+            ];
+
+            const foundRecords = records.filter(record => record.name.toLowerCase().includes(searchInput));
+
+            const recordsContainer = document.getElementById("records-container");
+            recordsContainer.innerHTML = "";
+
+            if (foundRecords.length === 0) {
+                recordsContainer.innerHTML = "<p>No records found matching the search term.</p>";
+            } else {
+                const list = document.createElement("ul");
+                foundRecords.forEach((record, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <strong>Record ${index + 1}:</strong><br>
+                        Name: ${record.name}<br>
+                        Age: ${record.age}<br>
+                        Sex: ${record.sex}<br>
+                        Specification: ${record.Specification}<br><br>
+                    `;
+                    list.appendChild(listItem);
+                });
+                recordsContainer.appendChild(list);
+            }
+        }
+
+        
+        displayRecords();
+    </script>
+</body>
+</html>

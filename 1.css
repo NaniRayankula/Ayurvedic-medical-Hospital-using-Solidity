@@ -1,0 +1,9 @@
+a {
+    color: #fff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+a:hover {
+    color: #ccc; /* Change color on hover */
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Records</title>
+    <style>
+        body {
+            background-image: url(k.png);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+   
+
+h1 {
+    text-align: center;
+}
+
+#records-container {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    font-style: italic;
+    color: #888;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Healthcare Records</h1>
+    
+    <div id="records-container">
+        <!-- Records will be displayed here -->
+    </div>
+
+    <h2>Search Records</h2>
+    <input type="text" id="search-input" placeholder="Enter patient name">
+    <button onclick="searchRecord()">Search</button>
+
+    <script>
+        function displayRecords() {
+            // Sample records
+            const records = [
+                { name: "John Doe", age: 35, sex: "Male", diagnosis: "Fever" },
+                { name: "Jane Smith", age: 45, sex: "Female", diagnosis: "Diabetes" },
+                { name: "Alice Johnson", age: 28, sex: "Female", diagnosis: "Migraine" },
+
+                { name: "John", age: 32, sex: "Male", diagnosis: "head" },
+                { name: "Jenny", age: 40, sex: "Female", diagnosis: "nerves" },
+                { name: "Alice", age: 28, sex: "Female", diagnosis: "knee" },
+
+                { name: "Joe", age: 37, sex: "Male", diagnosis: "hand" },
+                { name: "pavan", age: 46, sex: "Female", diagnosis: "perolosis" },
+                { name: "kajol", age: 60, sex: "Female", diagnosis: "backbone" },
+                { name: "sharukh", age: 63, sex: "Male", diagnosis: "lungs problem"}
+            ];
+
+            const recordsContainer = document.getElementById("records-container");
+            recordsContainer.innerHTML = "";
+
+            if (records.length === 0) {
+                recordsContainer.innerHTML = "<p>No records found.</p>";
+            } else {
+                const list = document.createElement("ul");
+                records.forEach((record, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <strong>Record ${index + 1}:</strong><br>
+                        Name: ${record.name}<br>
+                        Age: ${record.age}<br>
+                        Sex: ${record.sex}<br>
+                        Diagnosis: ${record.diagnosis}<br><br>
+                    `;
+                    list.appendChild(listItem);
+                });
+                recordsContainer.appendChild(list);
+            }
+        }
+
+        function searchRecord() {
+            const searchInput = document.getElementById("search-input").value.toLowerCase();
+            const records = [
+            { name: "Nandeeshwar", age: 20, sex: "Male", diagnosis: "piles" },
+                { name: "Jane Smith", age: 45, sex: "Female", diagnosis: "Diabetes" },
+                { name: "Alice Johnson", age: 28, sex: "Female", diagnosis: "Migraine" },
+
+                { name: "john Doe", age: 32, sex: "Male", diagnosis: "head" },
+                { name: "Jenny", age: 40, sex: "Female", diagnosis: "nerves" },
+                { name: "Alice", age: 28, sex: "Female", diagnosis: "knee" },
+
+                { name: "Joe", age: 37, sex: "Male", diagnosis: "hand" },
+                { name: "pavan", age: 46, sex: "Female", diagnosis: "perolosis" },
+                { name: "kajol", age: 60, sex: "Female", diagnosis: "backbone" },
+                { name: "sharukh", age: 63, sex: "Male", diagnosis: "lungs problem"}
+            ];
+
+            const foundRecords = records.filter(record => record.name.toLowerCase().includes(searchInput));
+
+            const recordsContainer = document.getElementById("records-container");
+            recordsContainer.innerHTML = "";
+
+            if (foundRecords.length === 0) {
+                recordsContainer.innerHTML = "<p>No records found matching the search term.</p>";
+            } else {
+                const list = document.createElement("ul");
+                foundRecords.forEach((record, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <strong>Record ${index + 1}:</strong><br>
+                        Name: ${record.name}<br>
+                        Age: ${record.age}<br>
+                        Sex: ${record.sex}<br>
+                        Diagnosis: ${record.diagnosis}<br><br>
+                    `;
+                    list.appendChild(listItem);
+                });
+                recordsContainer.appendChild(list);
+            }
+        }
+
+        
+        displayRecords();
+    </script>
+</body>
+</html>

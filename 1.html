@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Hospital</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+             /* Prevent scrolling */
+            background-image: url('logo.jpg');
+            background-size: cover;
+            background-position: center;
+           
+        }
+
+        .container {
+            min-height: 100vh; /* Set minimum height to 100% of viewport height */
+            display: flex;
+            flex-direction: column; /* Stack children vertically */
+            justify-content: space-between; /* Distribute space evenly between children */
+            background-color: rgba(41, 128, 185, 0.7); /* Background color with transparency */
+            color: #fff; /* Text color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .logo {
+            width: 300px; /* Adjust logo width as needed */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: lightcoral;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <img src="logo.jpg" alt="Hospital Logo" class="logo">
+            <h1>Welcome to Our Hospital</h1>
+            <p>We are dedicated to providing the best Ayurvedic healthcare services for you and your family.</p>
+            <button class="button" onclick="redirectToServices()">Explore Our Services</button>
+        </div>
+        <footer>
+            <p>&copy; 2024 Our Hospital. All rights reserved.</p>
+            <p>Contact us: naninaidu2021@gmail.com | Phone: +91-6300753104</p>
+        </footer>
+    </div>
+
+    <script>
+        function redirectToServices() {
+            window.location.href = "intro.html"; // Replace with the correct URL
+        }
+    </script>
+</body>
+</html>
